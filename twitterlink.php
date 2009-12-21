@@ -11,9 +11,9 @@ Author URI: http://christianbolstad.se
 function cb_twitterlink($content)
 {
 
-$pattern = '/@(\w.*)? /U'; 
-$replacement = '<a href="http://twitter.com/${1}">@${1}</a> ';
-return preg_replace($pattern, $replacement, $content);
+ $pattern = '/(^|\s)@(\w+)/';
+ $replacement = '${1}<a href="http://twitter.com/${2}">@${2}</a> ';
+ return preg_replace($pattern, $replacement, $content);
 }
 
 add_filter( "the_content", "cb_twitterlink" );
