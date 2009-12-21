@@ -3,7 +3,7 @@
 Plugin Name: TwitterLink
 Plugin URI: http://karamell.net/twitterlink/
 Description: Create a href-link to twitter @usernames mentioned in posts.
-Version: The 1.0
+Version: The 1.03
 Author: Christian Bolstad
 Author URI: http://christianbolstad.se
 */
