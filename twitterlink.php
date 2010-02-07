@@ -8,6 +8,8 @@ Author: Christian Bolstad
 Author URI: http://christianbolstad.se
 */
 
+// default settings 
+
 $cb_comment_links = 1;
 $cb_content_links = 1;
 $cb_edit_override_nofollow = 1;
@@ -26,6 +28,17 @@ function cb_twitify($content,$nofollow = '')
  return preg_replace($pattern, $replacement, $content);
 }
 
+function cb_twitify_search($content,$nofollow = '')
+{
+ $pattern = '/(^|[^a-z0-9_])#([a-z0-9_]+)/i';
+ $blank = '';
+ global $cb_blank_template;
+ global $cb_target_blank;
+ if ($cb_target_blank) $blank = $cb_blank_template; 
+ $replacement = '$1<a '.$nofollow.$blank.' href="http://search.twitter.com/search?q=%23$2">#$2</a>';
+ return preg_replace($pattern, $replacement, $content);
+}
+
 function cb_twitterlink($content)
 {
   return cb_twitify($content);
@@ -41,7 +54,10 @@ function cb_twitterlink_comment($content)
   return cb_twitify($content,$nofollow);
 }
 
+$cb_search_links = 1;
+
 if ($cb_content_links) add_filter( "the_content", "cb_twitterlink" );
+if ($cb_search_links) add_filter( "the_content","cb_twitify_search");
 if ($cb_comment_links) add_filter( "comment_text", "cb_twitterlink_comment" ); 
 
 ?>
