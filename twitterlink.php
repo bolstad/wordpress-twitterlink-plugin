@@ -60,4 +60,17 @@ if ($cb_content_links) add_filter( "the_content", "cb_twitterlink" );
 if ($cb_search_links) add_filter( "the_content","cb_twitify_search");
 if ($cb_comment_links) add_filter( "comment_text", "cb_twitterlink_comment" ); 
 
+
+add_action('admin_menu', 'quicktwitterlink_plugin_menu');
+
+function quicktwitterlink_plugin_menu() {
+  add_options_page('Options for Quick Twitter Link', 'Quick Twitter Link', 'manage_options', 'quicktwitterlink-yadayada', 'quicktwitterlink_options');
+}
+
+function quicktwitterlink_options() {
+  echo '<h1>Options for Quick Twitter Links</h1><div class="wrap">';
+  echo 'Options and settings goes here';
+  echo '</div>';
+}
+
 ?>
